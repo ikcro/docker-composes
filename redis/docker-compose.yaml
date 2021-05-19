@@ -1,0 +1,14 @@
+version: '3'
+services:
+  redis:
+    image: redis:3.2.12
+    container_name: redis3
+    privileged: true
+    restart: always
+    volumes:
+      - /opt/docker_volumes/redis/data:/data
+      - /opt/docker_volumes/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - /opt/docker_volumes/redis/logs:/logs
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
