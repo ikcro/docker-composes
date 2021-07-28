@@ -1,0 +1,11 @@
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus-docker-compose.yaml
+    restart: always
+    volumes:
+      - /opt/docker_volumes/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+#      - /opt/docker_volumes/prometheus-docker-compose.yaml/node_down.yml:/etc/prometheus-docker-compose.yaml/node_down.yml
+    ports:
+      - 9090:9090

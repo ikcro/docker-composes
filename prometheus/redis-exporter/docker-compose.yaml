@@ -1,0 +1,10 @@
+version: '3'
+services:
+  redis_exporter:
+    image: oliver006/redis_exporter
+    container_name: redis-exporter
+    restart: always
+    ports:
+      - 9121:9121
+    command:
+      - '--redis.addr=redis://192.168.31.200:6379'

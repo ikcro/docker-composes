@@ -1,0 +1,11 @@
+version: '3'
+services:
+  redis:
+    image: grafana/grafana
+    container_name: grafana
+    privileged: true
+    restart: always
+    volumes:
+      - /opt/docker_volumes/grafana:/var/lib/grafana
+    ports:
+      - 3000:3000

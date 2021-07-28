@@ -1,0 +1,5 @@
+# 全局配置
+global:
+  scrape_interval:     15s # 将抓取间隔设置为每 15 秒一次。默认为每 1 分钟.
+  evaluation_interval: 15s # 每 15 秒评估一次规则。默认为每 1 分钟一次。
+  # scrape_timeout is set to the global default (10s).
