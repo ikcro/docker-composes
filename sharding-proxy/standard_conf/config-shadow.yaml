@@ -1,0 +1,84 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+######################################################################################################
+#
+# 您可以在此处配置代理的规则。
+# 这个例子是分片规则的配置。
+#
+# 如果要使用分片，请参考这个文件；
+# 如果要使用主从，请参考config-master_slave.yaml。
+# 如果要使用主从，请参考config-encrypt.yaml。
+#
+######################################################################################################
+#
+#schemaName: sharding_db
+#
+#dataSources:
+#  ds:
+#    url: jdbc:postgresql://127.0.0.1:5432/demo_ds_0?serverTimezone=UTC&useSSL=false
+#    username: postgres
+#    password: postgres
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 50
+#  shadow_ds:
+#    url: jdbc:postgresql://127.0.0.1:5432/demo_ds_1?serverTimezone=UTC&useSSL=false
+#    username: postgres
+#    password: postgres
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 50
+#
+#shadowRule:
+#  column: shadow
+#  shadowMappings:
+#    ds: shadow_ds
+#
+#
+######################################################################################################
+#
+# 如果要连接MySQL，需要手动将MySQL驱动拷贝到lib目录下。
+#
+######################################################################################################
+#
+#schemaName: sharding_db
+#
+#dataSources:
+#  ds:
+#    url: jdbc:mysql://127.0.0.1:3306/demo_ds_0?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 50
+#  shadow_ds:
+#    url: jdbc:mysql://127.0.0.1:3306/demo_ds_1?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 50
+#
+#shadowRule:
+#  column: shadow
+#  shadowMappings:
+#    ds: shadow_ds

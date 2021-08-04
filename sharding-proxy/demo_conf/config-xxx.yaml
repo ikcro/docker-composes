@@ -1,0 +1,25 @@
+schemaName: sharding_db
+dataSources:
+  ds0:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.31.199:3306/dejavu_sharding_sphere?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+  ds1:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.31.201:3306/dejavu_sharding_sphere?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+shardingRule:
+  tables:
+    sharding_db_test:
+      actualDataNodes: ds$->{0..1}.sharding_db_test
+      databaseStrategy:
+        inline:
+          shardingColumn: id
+          algorithmExpression: ds$->{id % 2}
+      keyGenerator:
+        type: SNOWFLAKE
+        column: id
+  bindingTables:
+    - sharding_db_test
+  defaultTableStrategy:
+    none:

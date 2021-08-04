@@ -1,0 +1,16 @@
+version: '3'
+services:
+  redis:
+    image: apache/sharding-proxy:4.1.1
+    container_name: sharding-proxy
+    privileged: true
+    restart: always
+    environment:
+      - PORT=3308
+      - JVM_OPTS="-Djava.awt.headless=true"
+    volumes:
+      - /opt/docker_volumes/sharding-proxy/conf:/opt/sharding-proxy/conf
+      - /opt/docker_volumes/sharding-proxy/ext-lib:/opt/sharding-proxy/ext-lib
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 3308:3308
