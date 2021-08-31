@@ -1,0 +1,10 @@
+version: '3'
+services:
+  rancher:
+    image: rancher/server:stable
+    container_name: rancher
+    privileged: true
+    restart: unless-stopped
+    command: --db-host 192.168.31.199 --db-port 3306 --db-user root --db-pass 123456 --db-name rancher
+    ports:
+      - 8080:8080
