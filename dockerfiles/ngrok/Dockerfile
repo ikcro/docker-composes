@@ -17,6 +17,7 @@ ADD ngrok_linux_arm64 /home/ngrok/
 WORKDIR /home/ngrok
 
 RUN chmod 777 /home/ngrok/ngrok && chmod 777 /home/ngrok/start.sh
+RUN ln -sf /dev/stdout /var/log/app.log
 
 #CMD 运行以下命令
 CMD start.sh
