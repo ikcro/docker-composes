@@ -16,5 +16,8 @@ ADD ngrok_linux_arm64 /home/ngrok/
 #WORKDIR 相当于cd
 WORKDIR /home/ngrok
 
+RUN chmod 777 /home/ngrok/ngrok && chmod 777 /home/ngrok/start.sh
+RUN chmod 777 /home/ngrok/ngrok && chmod 777 /home/ngrok/start.sh
+
 #CMD 运行以下命令
-CMD start
+CMD start.sh
