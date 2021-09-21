@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ngrok:
+    image: ngrok:1.0                    # 镜像`ngrok`
+    container_name: ngrok               # 容器名为'ngrok'
+    hostname: ngrok
+    restart: always                     # 指定容器退出后的重启策略为始终重启
+    command: ngrok -config ngrok.conf start blog
+    volumes:                            # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - "/opt/docker_volumes/ngrok/ngrok.conf:/home/ngrok/ngrok.conf"
+    # 虚拟内存
+    mem_limit: 512m

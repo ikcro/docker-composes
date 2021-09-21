@@ -1,0 +1,18 @@
+配置文件参数小解：
+auth_token：用户名
+password：用户密码
+httptun httpstun 为隧道名称  可以自定义
+remote_port：映射端口
+subdomain：映射前缀
+http https：协议
+
+如需增减隧道，按照
+httptun:
+      remote_port: 80
+      subdomain: admin
+      proto:
+        http: 127.0.0.1:80
+格式修改即可。
+
+
+其他未列参数，大家自行研究

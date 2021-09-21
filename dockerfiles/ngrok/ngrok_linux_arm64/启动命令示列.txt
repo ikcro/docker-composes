@@ -1,0 +1,4 @@
+ngrok.exe -config ngrok.conf start 隧道名称1 隧道名称2 隧道名称3
+
+
+列：ngrok.exe -config ngrok.conf start httptun httpstun tcptun

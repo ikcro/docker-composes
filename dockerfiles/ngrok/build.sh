@@ -1,0 +1,1 @@
+docker build -t ngrok:1.0 -f Dockerfile .
