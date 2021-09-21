@@ -6,8 +6,10 @@ services:
     privileged: true
     hostname: ngrok
     restart: always                     # 指定容器退出后的重启策略为始终重启
-    command: /home/ngrok/ngrok -config ngrok.conf start blog
+    command: /home/ngrok/start.sh
     volumes:                            # 数据卷挂载路径设置,将本机目录映射到容器目录
       - "/opt/docker_volumes/ngrok/ngrok.conf:/home/ngrok/ngrok.conf"
+      - "/opt/docker_volumes/ngrok/start.sh:/home/ngrok/start.sh"
+      - "/opt/docker_volumes/ngrok/log:/var/log"
     # 虚拟内存
     mem_limit: 512m
