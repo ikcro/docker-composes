@@ -1,0 +1,6 @@
+
+#构建镜像
+docker build -f ./Dockerfile -t sentinel-dashboard:1.8.3 .
+
+#运行镜像
+docker run -p 8080:8080 -d sentinel-dashboard:1.8.3

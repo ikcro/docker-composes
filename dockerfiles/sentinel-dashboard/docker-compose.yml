@@ -1,0 +1,12 @@
+version: '3'
+services:
+  sentinel-dashboard:
+    build: .                            # 构建镜像的dockerfile脚本路径
+    container_name: sentinel-dashboard  # 容器名为'sentinel-dashboard'
+    privileged: true
+    hostname: sentinel_dashboard
+    restart: always                     # 指定容器退出后的重启策略为始终重启
+    ports:
+      - 8080:8080
+      # 虚拟内存
+    mem_limit: 512m
