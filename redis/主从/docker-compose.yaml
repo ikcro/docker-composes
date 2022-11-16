@@ -1,0 +1,44 @@
+version: '3'
+services:
+  master:
+    image: redis:6.2.7
+    container_name: redis_master
+    privileged: true
+    restart: always
+    volumes:
+      - /opt/docker_volumes/redis_master/data:/data
+      - /opt/docker_volumes/redis_master/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - /opt/docker_volumes/redis_master/logs:/logs
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+
+  slave1:
+    image: redis:6.2.7
+    container_name: redis_slave1
+    privileged: true
+    restart: always
+    volumes:
+      - /opt/docker_volumes/redis_slave1/data:/data
+      - /opt/docker_volumes/redis_slave1/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - /opt/docker_volumes/redis_slave1/logs:/logs
+    command: redis-server /usr/local/etc/redis/redis.conf --slaveof master 6379
+    ports:
+      - 6380:6380
+    depends_on:
+      - master
+
+  slave2:
+    image: redis:6.2.7
+    container_name: redis_slave2
+    privileged: true
+    restart: always
+    volumes:
+      - /opt/docker_volumes/redis_slave2/data:/data
+      - /opt/docker_volumes/redis_slave2/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - /opt/docker_volumes/redis_slave2/logs:/logs
+    command: redis-server /usr/local/etc/redis/redis.conf --slaveof master 6379
+    ports:
+      - 6381:6381
+    depends_on:
+      - master
