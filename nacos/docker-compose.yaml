@@ -2,28 +2,25 @@
 version: "3.1"  #这个版本和宿主机docker-compose版本相关
 services:
   nacos:
-    image: nacos/nacos-server:1.4.1
-    container_name: nacos_server
+    image: nacos/nacos-server:1.4.2
+    container_name: nacos
     volumes:                                                     # 数据卷挂载路径设置,将本机目录映射到容器目录
       - "/opt/docker_volumes/nacos/logs:/home/nacos/logs"
-      - "/opt/docker_volumes/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties"
     environment:                        # 设置环境变量,相当于docker run命令中的-e
       - PREFER_HOST_MODE=hostname                 # 如果支持主机名可以使用hostname,否则使用ip，默认也是ip
-      - MODE=cluster                            # standalone/cluster
-      - NACOS_SERVERS=192.168.31.200:8848,192.168.31.201:8848,192.168.31.203:8848
-      - NACOS_SERVER_IP=192.168.31.200
+      - MODE=standalone                            # standalone/cluster
       - SPRING_DATASOURCE_PLATFORM=mysql          # 数据源平台 仅支持mysql或不保存empty
-      - MYSQL_SERVICE_HOST=192.168.31.199         # 注：这里不能为`127.0.0.1`或`localhost`方式！！！
-      - MYSQL_SERVICE_DB_NAME=dejavu_nacos_server        # 所需sql脚本位于 `nacos-mysql/nacos-mysql.sql`
+      - MYSQL_SERVICE_HOST=192.168.31.52         # 注：这里不能为`127.0.0.1`或`localhost`方式！！！
+      - MYSQL_SERVICE_DB_NAME=nacos        # 所需sql脚本位于 `nacos-mysql/nacos-mysql.sql`
       - MYSQL_SERVICE_PORT=3306
       - MYSQL_SERVICE_USER=root
-      - MYSQL_SERVICE_PASSWORD=123456
+      - MYSQL_SERVICE_PASSWORD=C!K;8jB:iJu9}q]>JY
       # JVM调优参数
       - JVM_XMS=256m   #-Xms default :2g
       - JVM_XMX=256m   #-Xmx default :2g
       - JVM_XMN=16m   #-Xmn default :1g
       - JVM_MS=8m     #-XX:MetaspaceSize default :128m
-      - JVM_MMS=8m    #-XX:MaxMetaspaceSize default :320m
+      - JVM_MMS=16m    #-XX:MaxMetaspaceSize default :320m
       - NACOS_DEBUG=n #是否开启远程debug，y/n，默认n
       - TOMCAT_ACCESSLOG_ENABLED=false #是否开始tomcat访问日志的记录，默认false
     ports:
