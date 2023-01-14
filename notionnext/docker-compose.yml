@@ -1,0 +1,11 @@
+version: '3'
+services:
+  NotionNext:
+    image: tangly1024/notionnext:3.3.9
+    container_name: notion_next
+    restart: always
+    environment:
+#      NOTION_PAGE_ID: 3cb80222dd094a038eb9909e5ef75e91  # Important page_id！！！Duplicate Template from  https://www.notion.so/tanghh/02ab3b8678004aa69e9e415905ef32a5
+      NEXT_PUBLIC_THEME: next
+    ports:
+      - "3000:3000"

@@ -1,0 +1,35 @@
+version: '3'
+services:
+  ##################################################### Typecho ##########################################################
+  ########################################### https://hub.docker.com/r/joyqi/typecho #####################################
+  typecho:
+    image: joyqi/typecho:nightly-php7.4-apache
+    container_name: typecho
+    privileged: true
+    restart: always
+    environment:
+      TIMEZONE: Asia/Shanghai                     # 服务器时区
+      MEMORY_LIMIT: 500M                          # PHP内存限制
+      MAX_POST_BODY: 50M                          # 最大请求
+      #      TYPECHO_INSTALL: 0                          # 默认：0，设置为1是否要自动运行安装脚本。
+      #      TYPECHO_DB_ADAPTER: Pdo_Mysql               # 默认：Pdo_Mysql，typecho的数据库驱动程序，可以是：Pdo_Mysql、、、、、、、。Pdo_SQLitePdo_PgsqlMysqliSQLitePgsql
+      #      TYPECHO_DB_HOST: localhost                  # 默认：localhost，数据库服务器主机，仅适用于 mysql 和 pgsql 驱动程序。
+      #      TYPECHO_DB_PORT: 3306                       # 默认值：（3306对于 mysql）或5432（对于 pgsql）
+      #      TYPECHO_DB_USER: root                      # 数据库用户名 和 pgsql 驱动程序需要
+      #      TYPECHO_DB_PASSWORD: xxxxxxxxxx            # 数据库密码 和 pgsql 驱动程序需要
+      #      TYPECHO_DB_FILE: ''                         # 需要 sqlite 驱动程序，数据库文件存放路径，仅sqlite驱动可用。
+      #      TYPECHO_DB_DATABASE: typecho                # mysql 和 pgsql 驱动程序需要,typecho 的数据库名称，仅适用于 mysql 和 pgsql 驱动程序。
+      #      TYPECHO_DB_PREFIX: typecho_                 # 所有表的前缀。
+      #      TYPECHO_DB_ENGINE: InnoDB                   # 默认：InnoDB，Mysql数据库引擎，仅适用于mysql驱动。
+      #      TYPECHO_DB_CHARSET: utf8mb4                 # 默认值：（utf8对于 pgsql）或utf8mb4（对于 mysql）数据库字符集，仅适用于 mysql 和 pgsql 驱动程序。
+      #      TYPECHO_DB_NEXT: none                       # 默认：none，当数据库中已经有一些应用程序表时执行的操作。none: 什么都不做，直接退出。keep: 保留这些表，并跳过初始化步骤。force: 删除这些表，重新初始化数据。
+      TYPECHO_SITE_URL: https://ikcro.com         # 您的网站网址，例如：https://your-domain.com
+    #      TYPECHO_USER_NAME: username                # 要创建的管理员用户名。
+    #      TYPECHO_USER_PASSWORD: password            # 默认值：一个随机的 8 个字符的字符串。要创建的管理员密码。
+    #      TYPECHO_USER_MAIL: admin@localhost.local    # 默认值：admin@localhost.local，要创建的管理员的电子邮件地址。
+    volumes:
+      - /opt/docker_volumes/typecho:/app/usr
+    ports:
+      - "8080:80"
+    external_links:
+      - mysql57:mysql57  #外部容器连接
