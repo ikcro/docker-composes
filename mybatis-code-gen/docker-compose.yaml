@@ -1,0 +1,9 @@
+# https://gitee.com/durcframework/code-gen?_from=gitee_search
+version: '3.1'
+services:
+  mybatis-code-gen:
+    image: tanghc2020/gen:latest
+    container_name: mybatis-code-gen
+    restart: always
+    ports:
+      - "6969:6969"

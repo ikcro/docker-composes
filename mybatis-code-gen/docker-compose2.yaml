@@ -1,0 +1,12 @@
+# https://gitee.com/fengwenyi/mybatis-plus-code-generator?_from=gitee_search
+version: '3.1'
+services:
+  mybatis-plus-code-generator:
+    image: fengwenyi/mybatis-plus-code-generator:3.5.2.6
+    container_name: mybatis-plus-code-generator
+    privileged: true
+    restart: always
+    ports:
+      - "8899:8899"
+    volumes:
+      - ~/temp:/temp
