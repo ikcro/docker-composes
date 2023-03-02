@@ -1,0 +1,14 @@
+# github: https://github.com/vaxilu/x-ui
+# dockerhub: https://hub.docker.com/r/enwaiax/x-ui
+# dockercompose: https://github.com/Chasing66/x-ui/blob/main/docs/README_zh.md
+version: '3'
+services:
+  x_ui:
+    image: enwaiax/x-ui:latest
+    container_name: x_ui
+    privileged: true
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - '/opt/docker_volumes/x-ui/db/:/etc/x-ui/'
+      - '/opt/docker_volumes/x-ui/cert/:/root/cert/'

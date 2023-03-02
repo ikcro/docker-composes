@@ -1,0 +1,20 @@
+# https://hub.docker.com/r/ionelmc/webdav
+
+# 启动命令：env UID=$(id -u) GID=$(id -g) docker compose up
+# 注意：上面添加的UID只是为了将参数传给docker compose，不然会报：not found $UID
+version: '3'
+services:
+  webdav:
+    image: ionelmc/webdav:latest
+    container_name: webdav
+    privileged: true
+    restart: always
+    user: 1000:1000
+    ports:
+      - '8001:8080'
+    environment:
+      - WEBDAV_USERNAME=ikcro
+      - WEBDAV_PASSWORD=8SzVrXl03zRLW6Kl
+      - UID=1000
+    volumes:
+      - '/opt/docker_volumes/webdav:/media'

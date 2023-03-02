@@ -1,0 +1,23 @@
+#  图床
+#  项目介绍
+#    https://github.com/icret/EasyImages2.0
+#
+#  DockerHub: https://hub.docker.com/r/ddsderek/easyimage
+#
+# https://icret.github.io/EasyImages2.0/#/./%E4%B8%89%E6%96%B9%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97
+
+version: '3.3'
+services:
+  easyimage:
+    image: ddsderek/easyimage:latest
+    container_name: easyimage
+    ports:
+      - '8081:80'
+    environment:
+      - TZ=Asia/Shanghai
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - '/opt/docker_volumes/easyimage/config:/app/web/config'
+      - '/opt/docker_volumes/easyimage/i:/app/web/i'
+    restart: unless-stopped

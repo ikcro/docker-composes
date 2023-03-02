@@ -1,0 +1,16 @@
+# https://hub.docker.com/r/jxzzlfh/koodo-reader
+# 开源项目地址：https://github.com/troyeguo/koodo-reader
+
+
+# 电子书阅读器
+version: '3'
+services:
+  koodo_reader:
+    image: jxzzlfh/koodo-reader:latest
+    container_name: koodo_reader
+    privileged: true
+    restart: always
+    user: 1000:1000
+    ports:
+      - '8018:80'
+

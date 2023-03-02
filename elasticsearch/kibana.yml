@@ -8,4 +8,4 @@ elasticsearch.hosts: [ "http://localhost:9200" ]
 # 显示登陆页面
 #xpack.monitoring.ui.container.elasticsearch.enabled: true
 # 语言
-#i18n.locale: "zh-CN"
+i18n.locale: "zh-CN"
