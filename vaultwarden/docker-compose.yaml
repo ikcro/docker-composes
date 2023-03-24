@@ -1,0 +1,18 @@
+# bitwardenrs:            https://bitwarden.com/
+# vaultwarden dcoekrhub:  https://hub.docker.com/r/vaultwarden/server
+# vaultwarden doc:        https://github.com/dani-garcia/vaultwarden/wiki/Configuration-overview
+
+version: '3'
+services:
+  bitwardenrs:
+    image: vaultwarden/server:1.27.0
+    container_name: bitwardenrs
+    privileged: true
+    restart: always
+    environment:
+      - ADMIN_TOKEN=XXXXX             # 可设置host+ip+/admin的管理密码
+      - SIGNUPS_ALLOWED=false         # 可设置禁止新用户注册
+    volumes:
+      - '/opt/docker_volumes/vaultwarden/data/:/data/'
+    ports:
+      - '8000:80'
