@@ -1,0 +1,13 @@
+# 启动容器，测试环境JVM堆大小等环境变量可以不用指定，生产必须指定，切记
+version: "3"
+services:
+  jira:
+    image: ikcro/jira:7.13.1
+    container_name: jira
+    restart: unless-stopped
+    environment:
+      - CATALINA_OPTS=-Xms1024m -Xmx1024m -Datlassian.plugins.enable.wait=300
+    volumes:
+      - /opt/docker_volumes/jira/data:/var/atlassian/jira
+    ports:
+      - "8080:8080"

@@ -1,0 +1,13 @@
+# 启动容器，测试环境JVM堆大小等环境变量可以不用指定，生产必须指定，切记
+version: "3"
+services:
+  confluence:
+    image: ikcro/confluence:6.15.9
+    container_name: confluence
+    restart: unless-stopped
+    environment:
+      - CATALINA_OPTS=-Xms1024m -Xmx1024m -Datlassian.plugins.enable.wait=300
+    volumes:
+      - /opt/docker_volumes/confluence/data:/var/atlassian/confluence
+    ports:
+      - "9102:8090"
