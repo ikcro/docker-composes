@@ -1,0 +1,18 @@
+#官方文档： https://polarismesh.cn/docs/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%89%E8%A3%85/%E5%8D%95%E6%9C%BA%E7%89%88%E5%AE%89%E8%A3%85/
+
+version: '3'
+services:
+  polarismesh:
+    image: polarismesh/polaris-server-standalone:latest
+    container_name: polarismesh
+    privileged: true
+    restart: always
+    ports:
+      - '8101:8101'
+      - '8100:8100'
+      - '8080:8080'
+      - '8090:8090'
+      - '8091:8091'
+      - '8093:8093'
+      - '8761:8761'
+      - '9090:9090'
