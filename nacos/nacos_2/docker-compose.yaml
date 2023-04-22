@@ -1,5 +1,5 @@
 # 具体配置查看官方：https://github.com/nacos-group/nacos-docker
-
+# init sql script: https://github.com/alibaba/nacos/blob/master/distribution/conf/mysql-schema.sql
 version: "3"
 services:
   nacos:
