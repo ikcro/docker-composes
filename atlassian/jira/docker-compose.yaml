@@ -2,7 +2,7 @@
 version: "3"
 services:
   jira:
-    image: ikcro/jira:7.13.1
+    image: ikcro/jira:8.0.2
     container_name: jira
     restart: unless-stopped
     environment:

@@ -1,7 +1,7 @@
 
 生成镜像：
 ```shell
-    docker build -t ikcro/jira:7.13.1 .
+    docker build -f ./Dockerfile8 -t ikcro/jira:8.0.2 .
 ```
 
 获取许可：

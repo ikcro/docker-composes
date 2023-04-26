@@ -2,7 +2,7 @@
 version: "3"
 services:
   confluence:
-    image: ikcro/confluence:6.15.9
+    image: ikcro/confluence:7.9.3
     container_name: confluence
     restart: unless-stopped
     environment:
