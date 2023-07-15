@@ -1,0 +1,38 @@
+# github：    https://github.com/apache/rocketmq
+# dockerhub:   https://hub.docker.com/r/apache/rocketmq/tags
+version: "3"
+services:
+  namesrv:
+    image: apache/rocketmq:4.9.6
+    container_name: rocketmq_namesrv
+    privileged: true
+    environment:
+      JAVA_OPT: -server -Xms512m -Xmx512m
+    command: sh mqnamesrv
+    ports:
+      - "9876:9876"
+    volumes:
+      - /Users/zhangtao/Applications/space/docker/rocketmq/namesrv/logs:/home/rocketmq/logs
+      - /Users/zhangtao/Applications/space/docker/rocketmq/namesrv/logs:/home/rocketmq/store
+    network_mode: "host"
+
+  broker_1:
+    image: apache/rocketmq:4.9.6
+    container_name: rocketmq_broker_1
+    privileged: true
+    environment:
+      JAVA_OPT: -server -Xms2048m -Xmx2048m -Xmn512m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=640m
+    command: sh mqbroker -c /home/rocketmq/rocketmq-4.9.6/conf/broker.conf -p
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+      - "10912:10912"
+    depends_on:
+      - namesrv
+    volumes:
+      - /Users/zhangtao/Applications/space/docker/rocketmq/broker_1/conf/broker.conf:/home/rocketmq/rocketmq-4.9.6/conf/broker.conf
+      - /Users/zhangtao/Applications/space/docker/rocketmq/broker_1/logs:/home/rocketmq/logs
+      - /Users/zhangtao/Applications/space/docker/rocketmq/broker_1/store:/home/rocketmq/store
+    network_mode: "host"
+    stdin_open: true
+    tty: true

@@ -1,0 +1,24 @@
+# flare:一个个人主页，书签，导航网站
+# GitHub地址：https://github.com/soulteary/docker-flare
+version: '3.6'
+services:
+  flare:
+    image: soulteary/flare
+    container_name: flare
+    restart: always
+    # 默认无需添加任何参数，如有特殊需求
+    # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
+    command: flare
+    environment:
+      # 开启登陆
+      - FLARE_DISABLE_LOGIN=0
+      # 设置登陆账号
+      - FLARE_USER=zhangtao
+      # 指定你自己的账号密码，如未设置 `FLARE_USER`，则会默认生成密码并展示在应用启动日志中
+      - FLARE_PASS=Developer123
+    ports:
+      # 根据自己需求设置端口，如需调整访问端口为 8080，
+      # 可参考修改为 `- 8080:5005`
+      - 9200:5005
+    volumes:
+      - /opt/docker_volumes/flare/app:/app

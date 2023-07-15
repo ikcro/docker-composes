@@ -1,0 +1,25 @@
+version: '3'
+services:
+  jenkins:
+    user: root
+    restart: always
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    privileged: true
+    environment:
+      JENKINS_JAVA_OPTS: "-Duser.language=zh -Dfile.encoding=UTF-8"
+      TZ: "Asia/Shanghai"
+    ports:
+      - "8090:8080"
+      - "50000:50000"
+    volumes:
+      # 挂载数据文件
+      - /opt/docker_volumes/jenkins/data/:/var/jenkins_home
+
+      # 挂载docker
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+networks:
+  default:
+    external:
+      name: default_all

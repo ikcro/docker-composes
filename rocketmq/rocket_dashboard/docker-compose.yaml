@@ -1,0 +1,11 @@
+# https://github.com/apache/rocketmq-dashboard
+version: '3'
+services:
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    container_name: rocketmq-dashboard
+    environment:
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:9876
+    ports:
+      - "8080:8080"
+    restart: always

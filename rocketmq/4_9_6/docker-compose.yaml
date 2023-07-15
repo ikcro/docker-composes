@@ -1,0 +1,37 @@
+# github：    https://github.com/apache/rocketmq
+# dockerhub:   https://hub.docker.com/r/apache/rocketmq/tags
+version: "3"
+services:
+  namesrv:
+    image: apache/rocketmq:4.9.6
+    container_name: rocketmq_namesrv
+    privileged: true
+    environment:
+      JAVA_OPT: -server -Xms512m -Xmx512m
+    command: sh mqnamesrv
+    ports:
+      - "9876:9876"
+    volumes:
+      - /opt/docker/rocketmq/namesrv/logs:/home/rocketmq/logs
+      - /opt/docker/rocketmq/namesrv/store:/home/rocketmq/store
+
+  broker_1:
+    image: apache/rocketmq:4.9.6
+    container_name: rocketmq_broker_1
+    privileged: true
+    environment:
+      JAVA_OPT: -server -Xms4096m -Xmx4096m -Xmn512m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=640m
+      NAMESRV_ADDR: 39.98.120.13:9876
+    command: sh mqbroker -c /home/rocketmq/rocketmq-4.9.6/conf/broker.conf
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+      - "10912:10912"
+    depends_on:
+      - namesrv
+    volumes:
+      - /opt/docker/rocketmq/broker_1/conf/broker.conf:/home/rocketmq/rocketmq-4.9.6/conf/broker.conf
+      - /opt/docker/rocketmq/broker_1/logs:/home/rocketmq/logs
+      - /opt/docker/rocketmq/broker_1/store:/home/rocketmq/store
+    stdin_open: true
+    tty: true

@@ -1,0 +1,14 @@
+# 官网说明：从2022年末已经不在维护portainer/portainer，转而维护portainer/portainer-ce
+version: '3'
+services:
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer-ce
+    privileged: true
+    restart: always
+    volumes:
+      -  /var/run/docker.sock:/var/run/docker.sock
+      -  /opt/docker_volumes/portainer/data:/data
+    ports:
+      - "9000:9000"
+      - "9443:9443"
