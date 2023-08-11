@@ -5,9 +5,9 @@ services:
     container_name: nginx
     privileged: true
     restart: always
-    volumes:
-      - /opt/docker_volumes/nginx/www:/etc/nginx/html
-      - /opt/docker_volumes/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-      - /opt/docker_volumes/nginx/logs:/var/log/nginx
+#    volumes:
+#      - /opt/docker_volumes/nginx/www:/etc/nginx/html
+#      - /opt/docker_volumes/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+#      - /opt/docker_volumes/nginx/logs:/var/log/nginx
     ports:
       - 1000:80
