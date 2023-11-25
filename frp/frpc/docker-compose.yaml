@@ -4,7 +4,7 @@ services:
     image: snowdreamtech/frpc:0.38.0
     container_name: frpc
     privileged: true
-    restart: always
+#    restart: always
     volumes:
-      - /Users/zhangtao/Applications/space/docker/frp/frpc.ini:/etc/frp/frpc.ini
+      - /Users/zhangtao/Applications/space/idea/docker-composes/frp/frpc/frpc.ini:/etc/frp/frpc.ini
     network_mode: "host"

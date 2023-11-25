@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:1.21.1-alpine
+    container_name: nginx
+    privileged: true
+    volumes:
+      - /opt/docker_volumes/nginx/www:/etc/nginx/html
+      - /opt/docker_volumes/nginx/conf.d:/etc/nginx/conf.d:ro
+      - /opt/docker_volumes/nginx/logs:/var/log/nginx
+    ports:
+      - "80:80"
+    network_mode:  "host"

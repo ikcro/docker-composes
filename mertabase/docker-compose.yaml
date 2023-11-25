@@ -1,0 +1,28 @@
+# https://www.metabase.com/docs/latest/installation-and-operation/running-metabase-on-docker
+version: '3.9'
+services:
+  metabase:
+    image: metabase/metabase:v0.46.8
+    container_name: metabase
+    privileged: true
+    volumes:
+      - /opt/docker_volumes/metabase/data:/metabase-data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /dev/urandom:/dev/random:ro
+    ports:
+      - "8001:3000"
+    environment:
+      JAVA_TIMEZONE: Asia/Shanghai
+      MB_DB_TYPE: mysql
+      MB_DB_HOST: 172.18.0.2
+      MB_DB_PORT: 3306
+      MB_DB_DBNAME: metabase
+      MB_DB_USER: root
+      MB_DB_PASS: 4Bg&xP$$rmNy4h4iP
+      MB_DB_FILE: /metabase-data/metabase.db
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
